@@ -1,6 +1,0 @@
-use_frameworks!
-target 'Flutter_model_Basis_Tests' do
-  pod 'Flutter_model_Basis', :path => '../'
-  
-  
-end
