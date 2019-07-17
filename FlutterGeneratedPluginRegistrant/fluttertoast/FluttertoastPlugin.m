@@ -1,6 +1,6 @@
 #import "FluttertoastPlugin.h"
 #import "UIView+Toast.h"
-
+#import "NavigationRoute.h"
 static NSString *const CHANNEL_NAME = @"PonnamKarthik/fluttertoast";
 
 @interface FluttertoastPlugin ()
@@ -37,7 +37,7 @@ static NSString *const CHANNEL_NAME = @"PonnamKarthik/fluttertoast";
 
 - (void)handleMethodCall:(FlutterMethodCall *)call result:(FlutterResult)result {
     if([@"cancel" isEqualToString:call.method]) {
-        [[UIApplication sharedApplication].delegate.window.rootViewController.view hideAllToasts];
+        [NavigationRoute.readCurrentController.view hideAllToasts];
         result([NSNumber numberWithBool:true]);
     } else if ([@"showToast" isEqualToString:call.method]) {
         NSString *msg = call.arguments[@"msg"];
@@ -66,19 +66,19 @@ static NSString *const CHANNEL_NAME = @"PonnamKarthik/fluttertoast";
         style.messageColor = [self colorWithHex:textcolor.unsignedIntegerValue];
         
         if ([gravity isEqualToString:@"top"]) {
-            [[UIApplication sharedApplication].delegate.window.rootViewController.view makeToast:msg
+            [NavigationRoute.readCurrentController.view makeToast:msg
                                                                                         duration:time
                                                                                         position:CSToastPositionTop
                                                                                            style:style
                                                                                            ];
         } else if ([gravity isEqualToString:@"center"]) {
-            [[UIApplication sharedApplication].delegate.window.rootViewController.view makeToast:msg
+            [NavigationRoute.readCurrentController.view makeToast:msg
                                                                                         duration:time
                                                                                         position:CSToastPositionCenter
                                                                                            style:style
                                                                                           ];
         } else {
-            [[UIApplication sharedApplication].delegate.window.rootViewController.view makeToast:msg
+            [NavigationRoute.readCurrentController.view makeToast:msg
                                                                                         duration:time
                                                                                         position:CSToastPositionBottom
                                                                                            style:style

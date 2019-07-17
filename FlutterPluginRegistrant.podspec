@@ -13,9 +13,9 @@ Depends on all your plugins, and provides a function to register them.
   s.license          = { :type => 'BSD' }
   s.author           = { 'Flutter Dev Team' => 'flutter-dev@googlegroups.com' }
   s.ios.deployment_target = '8.0'
-  s.source_files =  "FlutterPluginRegistrant/**/*.{h,m}"
+  s.source_files =  "FlutterGeneratedPluginRegistrant/**/*.{h,m}"
   s.source           = { :path => '.' }
-  s.public_header_files = 'FlutterPluginRegistrant/**/*.h'
+  s.public_header_files = 'FlutterGeneratedPluginRegistrant/**/*.h'
   s.prefix_header_file = false
   
 

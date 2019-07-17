@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 #import "ImagePickerPlugin.h"
-
+#import "NavigationRoute.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <Photos/Photos.h>
 #import <UIKit/UIKit.h>
@@ -25,10 +25,8 @@ static const int SOURCE_GALLERY = 1;
   FlutterMethodChannel *channel =
       [FlutterMethodChannel methodChannelWithName:@"plugins.flutter.io/image_picker"
                                   binaryMessenger:[registrar messenger]];
-  UIViewController *viewController =
-      [UIApplication sharedApplication].delegate.window.rootViewController;
   FLTImagePickerPlugin *instance =
-      [[FLTImagePickerPlugin alloc] initWithViewController:viewController];
+      [[FLTImagePickerPlugin alloc] initWithViewController:NavigationRoute.readCurrentController];
   [registrar addMethodCallDelegate:instance channel:channel];
 }
 
@@ -108,7 +106,7 @@ static const int SOURCE_GALLERY = 1;
   // Camera is not available on simulators
   if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
     _imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-    [_viewController presentViewController:_imagePickerController animated:YES completion:nil];
+    [NavigationRoute.readCurrentController presentViewController:_imagePickerController animated:YES completion:nil];
   } else {
     [[[UIAlertView alloc] initWithTitle:@"Error"
                                 message:@"Camera not available."
@@ -121,7 +119,7 @@ static const int SOURCE_GALLERY = 1;
 - (void)showPhotoLibrary {
   // No need to check if SourceType is available. It always is.
   _imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-  [_viewController presentViewController:_imagePickerController animated:YES completion:nil];
+  [NavigationRoute.readCurrentController presentViewController:_imagePickerController animated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker
