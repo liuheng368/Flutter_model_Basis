@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://flutter.io'
   s.license          = { :type => 'MIT' }
   s.author           = { 'Flutter Dev Team' => 'flutter-dev@googlegroups.com' }
-  s.source           = { :git => 'https://github.com/flutter/engine', :tag => s.version.to_s }
+  s.source           = { :git => 'git@github.com:liuheng368/Flutter_model_Basis.git', :tag => s.version.to_s }
   s.ios.deployment_target = '7.0'
   s.vendored_frameworks = 'Flutter.framework', 'App.framework'
 end
